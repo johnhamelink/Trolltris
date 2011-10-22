@@ -107,8 +107,9 @@ function generateID(){
 
 
 everyone.now.addBlock = function(){
-    inspect(this);
-    blockAdd(this.now.userId);
+    inspect(this.now);
+    var userId = this.now.userId;
+    blockAdd(userId);
 }
 
 everyone.now.getUserId = function(){
