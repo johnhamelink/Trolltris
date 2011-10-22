@@ -54,6 +54,7 @@ TetrisView.prototype = {
     wellColors: ['black', '#0000ff' ],
 
     draw: function() {
+        console.log(now.coords);
         this.drawBlocks(this.game.well.blocks,0,0, false);
         this.drawBlocks(this.game.tetromino.blocks, this.game.tetromino.x, this.game.tetromino.y, true);
     },
