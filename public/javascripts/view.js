@@ -36,13 +36,15 @@ TetrisView.prototype = {
                 //this.game.rotate();
                 break;
             case this.key.LEFT:
-                now.moveleft(window.userId);
+                console.log(now);
+                console.log(this.now);
+                now.moveleft(this.now.userId);
                 break;
             case this.key.RIGHT:
-                now.moveleft(window.userId);
+                now.moveleft(this.now.userId);
                 break;
             case this.key.DOWN:
-                now.moveDown(window.userId);
+                now.moveDown(this.now.userId);
                 break;
             default:
                 return; // leave other keys alone

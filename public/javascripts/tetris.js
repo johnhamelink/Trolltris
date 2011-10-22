@@ -1,13 +1,14 @@
 
 function TetrisGame()
 {
-    window.userId = now.getUserId();
     this.listeners = [];
     this.initWell(10,20);
     this.newTetromino();
 
     var self=this;
-    setInterval(function(){self.drop()},500);
+    setInterval(function(){
+        now.moveDown();
+    },500);
 }
 
 TetrisGame.prototype = {
