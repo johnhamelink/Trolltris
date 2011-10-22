@@ -123,7 +123,6 @@ everyone.now.moveLeft = function(userID){
 
 // Move one block to the right
 everyone.now.moveRight = function(userID){
-    console.log(this.now.userId);
     if (userID !== null && typeof(userID) !== undefined){
         winston.info(' - ' + userID + ' moved right');
         blockRight(userID);
