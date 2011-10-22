@@ -222,12 +222,12 @@ function blockDown( userId ){
                     blockmap[i-1][k] = blockmap[i][k];
                     // Delete old block
                     delete blockmap[i][k];
+                    break;
                 }
             }
         }
     }
 
-    inspect(blockmap);
 }
 
 function blockAdd( userId ){
