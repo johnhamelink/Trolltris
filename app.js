@@ -111,10 +111,10 @@ everyone.now.getUserId = function(){
 }
 
 // Move one block to the left
-everyone.now.moveLeft = function(userID){
-    if (userID !== null && typeof(userID) !== undefined){
+everyone.now.moveLeft = function(){
+    if (this.now.userId !== null || typeof(this.now.userId) !== undefined){
         winston.info(' - ' + userID + ' moved left');
-        blockLeft(userID);
+        blockLeft(this.now.userId);
         SendCoords(); 
     } else {
         winston.info(' - WARN: No UserID');
@@ -124,9 +124,9 @@ everyone.now.moveLeft = function(userID){
 // Move one block to the right
 everyone.now.moveRight = function(){
     console.log(this.now.cyan);
-    if (userID !== null && typeof(userID) !== undefined){
-        winston.info(' - ' + userID + ' moved right');
-        blockRight(userID);
+    if (this.now.userId !== null || typeof(this.now.userId) !== undefined){
+        winston.info(' - ' + this.now.userId + ' moved right');
+        blockRight(this.now.userId);
         SendCoords();   
     } else {
         winston.info(' - WARN: No UserID');
@@ -134,11 +134,10 @@ everyone.now.moveRight = function(){
 }
 
 // Move down a block
-everyone.now.moveDown = function(userID){
-    console.log(this.now);
-    if (userID !== null && typeof(userID) !== undefined){
-        winston.info(' - ' + userID + ' moved down');
-        blockDown(userID);
+everyone.now.moveDown = function(){
+    if (this.now.userId !== null || typeof(this.now.userId) !== undefined){
+        winston.info(' - ' + this.now.userId + ' moved down');
+        blockDown(this.now.userId);
         SendCoords();
     } else {
         winston.info(' - WARN: No UserID');
