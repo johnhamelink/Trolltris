@@ -110,7 +110,7 @@ everyone.now.getUserId = function(){
 
 // Move one block to the left
 everyone.now.moveLeft = function(userID){
-    if (typeof(userID) !== null || typeof(userID) !== undefined){
+    if (userID !== null || typeof(userID) !== undefined){
         winston.info(' - ' + userID + ' moved left');
         blockLeft(userID);
         SendCoords(); 
@@ -121,7 +121,7 @@ everyone.now.moveLeft = function(userID){
 
 // Move one block to the right
 everyone.now.moveRight = function(userID){
-    if (typeof(userID) !== null || typeof(userID) !== undefined){
+    if (userID !== null || typeof(userID) !== undefined){
         winston.info(' - ' + userID + ' moved right');
         blockRight(userID);
         SendCoords();   
@@ -132,11 +132,7 @@ everyone.now.moveRight = function(userID){
 
 // Move down a block
 everyone.now.moveDown = function(userID){
-
-    console.log(typeof(userID));
-    console.log(userID);
-
-    if (typeof(userID) !== null || typeof(userID) !== undefined){
+    if (userID !== null || typeof(userID) !== undefined){
         winston.info(' - ' + userID + ' moved down');
         blockDown(userID);
         SendCoords();
