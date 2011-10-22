@@ -106,7 +106,7 @@ function generateID(){
 }
 
 
-everyone.now.addBlock(){
+everyone.now.addBlock = function(){
     var rand = Math.round( Math.random() * width );
     blockmap[blockmap.length][rand] = 1;
 }
