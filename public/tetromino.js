@@ -35,9 +35,7 @@ Tetromino.prototype = {
 };
 
 Tetromino.tetrominos = [
-    [[7,7,0],
-     [0,7,7]]
-
+    [[1]]
 ];
 
 Tetromino.getTetromino = function(num, rotation, x,y) {

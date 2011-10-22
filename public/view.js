@@ -51,7 +51,7 @@ TetrisView.prototype = {
         e.preventDefault();
     },
 
-    wellColors: ['black', '#0000ff', '#ffa500', '#ffff00', '#00ff00', '#aa00ff', '#ff0000' ],
+    wellColors: ['black', '#0000ff' ],
 
     draw: function() {
         this.drawBlocks(this.game.well.blocks,0,0, false);
@@ -64,7 +64,7 @@ TetrisView.prototype = {
         for(var i=0; i < blocks.length; i++) {
             for(var j=0; j < blocks[i].length; j++) {
                 if (skipzero && !blocks[i][j]) continue;
-
+                
                 this.ctx.fillStyle = this.wellColors[blocks[i][j]];
                 this.ctx.fillRect(blockSize*(x+j), blockSize*(y+i), blockSize-1, blockSize-1);
             }
