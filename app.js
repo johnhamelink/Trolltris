@@ -52,9 +52,12 @@ app.get('/', function(req, res){
 });
 
 
-var types = [1,2,3,4,5,6],
-    height = 30,
-    width  = 20;
+// For each user, userID we have coords and current block ID
+var users = [],
+    height = 20,
+    width  = 10,
+    height = height-1,
+    width  = width-1;
 
 /*
  * [{
@@ -86,12 +89,7 @@ function mapGen(width,height){
 
 var blockmap = mapGen(width,height);
 
-// For each user, userID we have coords and current block ID
-var users = [],
-    height = 20,
-    width  = 10,
-    height = height-1,
-    width  = width-1;
+
 
 
 function generateID(){
