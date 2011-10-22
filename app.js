@@ -211,6 +211,8 @@ function blockRight( userId ){
 function blockDown( userId ){
     for( var i = height; i > 0; i-- ){
         for ( var k = 0; k < width; k++ ){
+            console.log(height);
+            console.log(blockmap[i]);
             if ( blockmap[i][k] === userId ){
                 
                 // Check there is no collision 
