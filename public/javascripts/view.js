@@ -39,7 +39,7 @@ TetrisView.prototype = {
                 now.moveLeft(now.userId);
                 break;
             case this.key.RIGHT:
-                now.moveReft(now.userId);
+                now.moveRight(now.userId);
                 break;
             case this.key.DOWN:
                 now.moveDown(now.userId);
