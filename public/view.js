@@ -36,6 +36,8 @@ TetrisView.prototype = {
                 //this.game.rotate();
                 break;
             case this.key.LEFT:
+                console.log(now);
+                console.log(this.now);
                 now.moveleft(this.now.userId);
                 break;
             case this.key.RIGHT:
