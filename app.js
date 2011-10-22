@@ -135,7 +135,7 @@ everyone.now.moveRight = function(){
 
 // Move down a block
 everyone.now.moveDown = function(userID){
-    console.log(this.now.cyan);
+    console.log(this.now);
     if (userID !== null && typeof(userID) !== undefined){
         winston.info(' - ' + userID + ' moved down');
         blockDown(userID);
