@@ -62,6 +62,7 @@ var types = [1,2,3,4,5,6],
 function mapGen(width,height){
     var map = [];
     for( var i = 0; i < height; i++ ){
+        map[i] = [];
         for ( var k = 0; k < width; k++ ){
             map[i][k] = 0;
         }
