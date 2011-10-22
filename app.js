@@ -147,9 +147,7 @@ everyone.now.moveDown = function(){
 
 function SendCoords(){
     winston.info(' - Sending Coords');
-    winston.info(blockmap);
-    console.log(now);
-    this.now.coords = blockmap;
+    everyone.now.coords = blockmap
 }
 
 /*
