@@ -209,12 +209,12 @@ function blockRight( userId ){
 }
 
 function blockDown( userId ){
-    for( var i = 0; i < height; i++ ){
+    for( var i = height; i > 0; i-- ){
         for ( var k = 0; k < width; k++ ){
             if ( blockmap[i][k] === userId ){
                 
                 // Check there is no collision 
-                if (blockmap[i-1][k] > 0){
+                if (blockmap[i-1][k] === 0){
                     // Move down
                     blockmap[i-1][k] = userId;
                     // Delete old block
