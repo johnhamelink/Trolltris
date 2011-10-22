@@ -114,6 +114,8 @@ everyone.now.moveLeft = function(userID){
         winston.info(' - ' + userID + ' moved left');
         blockLeft(userID);
         SendCoords(); 
+    } else {
+        winston.info(' - WARN: No UserID');
     }
 }
 
@@ -123,6 +125,8 @@ everyone.now.moveRight = function(userID){
         winston.info(' - ' + userID + ' moved right');
         blockRight(userID);
         SendCoords();   
+    } else {
+        winston.info(' - WARN: No UserID');
     }
 }
 
@@ -132,6 +136,8 @@ everyone.now.moveDown = function(userID){
         winston.info(' - ' + userID + ' moved down');
         blockDown(userID);
         SendCoords();
+    } else {
+        winston.info(' - WARN: No UserID');
     }
 }
 
