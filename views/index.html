@@ -14,15 +14,16 @@ canvas:focus {outline:2px solid #4bf}
 
 </script>
 <script>
-		window.userId = 0;
-		window.userId = everyone.now.getUserId();
+		now.ready(function(){
+			window.userId = now.getUserId();
 
 
 
-    var game = new TetrisGame();
+			var game = new TetrisGame();
 
-    var canvases = document.getElementsByTagName('canvas');
-    for(var i=0; i< canvases.length; i++) {
-        new TetrisView(canvases[i], game);
-    }
+			var canvases = document.getElementsByTagName('canvas');
+			for(var i=0; i< canvases.length; i++) {
+					new TetrisView(canvases[i], game);
+			}
+		});
 </script>
