@@ -92,26 +92,46 @@ var users = [],
     height = height-1,
     width  = width-1;
 
+
+function generateID(){
+    var ID = Math.random() + Math.random() + Math.random() + Math.random();
+    users.forEach(function(val, index, array){
+        if ( ID === val ){
+            generateID();
+        }
+    });
+
+    return ID;
+}
+
+everyone.now.getUserId = function(){
+    return generateID();
+}
+
 // Move one block to the left
-everyone.now.moveleft = function(userID){
+everyone.now.moveLeft = function(userID){
+    winston.info(' - ' + userID + ' moved left');
     blockLeft(userID);
     SendCoords(); 
 }
 
 // Move one block to the right
-everyone.now.moveright = function(userID){
+everyone.now.moveRight = function(userID){
+    winston.info(' - ' + userID + ' moved right');
     blockRight(userID);
     SendCoords();   
 }
 
 // Move down a block
 everyone.now.moveDown = function(userID){
+    winston.info(' - ' + userID + ' moved down');
     blockDown(userID);
     SendCoords();
 }
 
 
 function SendCoords(){
+    winston.info(' - Sending Coords');
     everyone.now.sendCoords(blockmap);
 }
 

@@ -1,6 +1,7 @@
 
 function TetrisGame()
 {
+    window.userId = now.getUserId();
     this.listeners = [];
     this.initWell(10,20);
     this.newTetromino();

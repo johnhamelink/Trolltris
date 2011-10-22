@@ -33,16 +33,16 @@ TetrisView.prototype = {
     keyHandler: function(e) {
         switch(e.keyCode) {
             case this.key.UP:
-                this.game.rotate();
+                //this.game.rotate();
                 break;
             case this.key.LEFT:
-                this.game.move(-1);
+                now.moveleft(window.userId);
                 break;
             case this.key.RIGHT:
-                this.game.move(1);
+                now.moveleft(window.userId);
                 break;
             case this.key.DOWN:
-                this.game.drop();
+                now.moveDown(window.userId);
                 break;
             default:
                 return; // leave other keys alone
