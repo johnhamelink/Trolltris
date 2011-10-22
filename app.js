@@ -80,7 +80,6 @@ var users = [],
 
 var well = buildWellMap(height,width);
 
-winston.info('-- Building well'.red);
 
 // Move one block to the left
 everyone.now.moveleft = function(userID){
