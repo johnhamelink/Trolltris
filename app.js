@@ -105,7 +105,9 @@ function generateID(){
 }
 
 everyone.now.getUserId = function(){
-    everyone.now.setUserId( generateID() );
+    var ID = generateID();
+    this.now.userId = ID;
+    return ID;
 }
 
 // Move one block to the left
