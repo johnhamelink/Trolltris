@@ -1,2 +1,22 @@
-<h1>Trolltris</h1>
-<p>Welcome to Trolltris</p>
+<!DOCTYPE html>
+<script src="/public/es5.js"></script>
+<script src="/public/tetromino.js"></script>
+<script src="/public/tetris.js"></script>
+<script src="/public/view.js"></script>
+<style>
+canvas {outline:none}
+canvas:focus {outline:2px solid #4bf}
+</style>
+<body>
+<canvas width="400" height="600"></canvas>
+<script>
+
+</script>
+<script>
+    var game = new TetrisGame();
+
+    var canvases = document.getElementsByTagName('canvas');
+    for(var i=0; i< canvases.length; i++) {
+        new TetrisView(canvases[i], game);
+    }
+</script>
