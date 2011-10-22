@@ -209,10 +209,12 @@ function blockRight( userId ){
 }
 
 function blockDown( userId ){
+    var leave = 0;
     for( var i = 0; i >= height-1; i++ ){
         if (blockmap.length === (i)){
             break;
         }
+
         for ( var k = 0; k < width; k++ ){
 
             if ( blockmap[i][k] === userId ){
@@ -222,10 +224,13 @@ function blockDown( userId ){
                     blockmap[i+1][k] = blockmap[i][k];
                     // Delete old block
                     delete blockmap[i][k];
+                    leave = 1;
                     break;
                 }
             }
+            if (leave === 1){ break; }
         }
+
     }
     inspect(blockmap);
 }
