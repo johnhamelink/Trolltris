@@ -228,7 +228,7 @@ function blockDown( userId ){
 }
 
 function blockAdd( userId ){
-    var startpoint = (Math.floor( Math.round() * width ));
+    var startpoint = parseInt(Math.floor( Math.round() * width ));
     blockmap[height][startpoint] = userId;
 }
 
