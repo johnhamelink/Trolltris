@@ -210,7 +210,7 @@ function blockRight( userId ){
 
 function blockDown( userId ){
     for( var i = height-1; i >= 0; i-- ){
-        if( i < 0 ){
+        if( i < 1 ){
             break;
         }
         for ( var k = 0; k < width; k++ ){
