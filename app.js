@@ -16,12 +16,24 @@ var app = module.exports = express.createServer(),
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'ejs');
+  //app.set('view engine', 'ejs');
+  
+  // disable layout
+  app.set("view options", {layout: false});
+
+  // make a custom html template
+  app.register('.html', {
+    compile: function(str, options){
+      return function(locals){
+        return str;
+      };
+    }
+  });
+
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
-  app.register('.html', require('ejs'));
 });
 
 app.configure('development', function(){
