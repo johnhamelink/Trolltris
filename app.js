@@ -105,6 +105,12 @@ function generateID(){
     return ID;
 }
 
+
+everyone.now.addBlock(){
+    var rand = Math.round( Math.random() * width );
+    blockmap[blockmap.length][rand] = 1;
+}
+
 everyone.now.getUserId = function(){
     var ID = generateID();
     this.now.userId = ID;
