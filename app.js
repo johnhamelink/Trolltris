@@ -227,6 +227,7 @@ function blockDown( userId ){
 
 function blockAdd( userId ){
     var startpoint = parseInt(Math.floor( Math.random() * width ));
+    winston.info(startpoint);
     blockmap[height][startpoint] = userId;
 }
 
