@@ -37,211 +37,147 @@ app.get('/', function(req, res){
   res.render('index');
 });
 
-function buildWellMap(x, y){
-    var well = [];
-    for( horizontal = 0; horizontal <= x; horizontal++ ){
-        for ( vertical = 0; vertical <= y; vertical++ ){
-            well.push({
-                x: horizontal,
-                y: vertical,
-                occupied: 0,
-                active: 0,
-                type: 0
-            });
+
+var types = [1,2,3,4,5,6],
+    height = 30,
+    width  = 20;
+
+/*
+ * [{
+ *  1: {
+ *      userId: 1,
+ *      coords: { x: 5, y: 9 },
+ *      rotation: 0,
+ *      type: 1
+ *  },
+ *  2: {
+ *      userId: 1,
+ *      coords : { x: 0, y: 4 },
+ *      rotation: 3,
+ *      type: 2
+ *  }
+ * }]
+ */
+
+function mapGen(width,height){
+    var map = [];
+    for( var i = 0; i < height; i++ ){
+        for ( var k = 0; k < width; k++ ){
+            map[i][k] = 0;
         }
     }
-
-    return well;
+    return map;
 }
+
+var blockmap = mapGen(width,height);
 
 // For each user, userID we have coords and current block ID
 var users = [],
     height = 20,
     width  = 10,
+    height = height-1,
+    width  = width-1;
+
 var well = buildWellMap(height,width);
 
 winston.info('-- Building well'.red);
 
-// Broadcast new map to all clients
-everyone.now.updatemap = function(){
-   return well; 
-}
-
 // Move one block to the left
-everyone.now.moveleft = function(userID, blockID){
-    
+everyone.now.moveleft = function(userID){
+    blockLeft(userID);
+    SendCoords(); 
 }
 
 // Move one block to the right
-everyone.now.moveright = function(userID, blockID){
-    
-}
-
-// Rotate one block 90 degrees to the left
-everyone.now.rotateleft = function(userID, blockID){
-    
-}
-
-// Rotate one block 90 degrees to the right
-everyone.now.rotateright = function(userID, blockID){
-    
+everyone.now.moveright = function(userID){
+    blockRight(userID);
+    SendCoords();   
 }
 
 // Move down a block
-everyone.now.moveDown = function(userID, blockID){
-    
+everyone.now.moveDown = function(userID){
+    blockDown(userID);
+    SendCoords();
 }
 
-var blocks = [
-    [[0,0,0,0],
-     [1,1,1,1],
-     [0,0,0,0]],
 
-    [[0,0,0],
-     [2,2,2],
-     [0,0,2]],
-
-    [[0,0,0],
-     [3,3,3],
-     [3,0,0]],
-
-    [[4,4],
-     [4,4]],
-
-    [[0,5,5],
-     [5,5,0]],
-
-    [[0,0,0],
-     [6,6,6],
-     [0,6,0]],
-
-    [[7,7,0],
-     [0,7,7]],
-];
-
-function insertNewBlock(userId){
-    var type       = Math.floor(Math.random() * blocks.length),
-        block      = blocks[ type ],
-        startpoint = Math.floor(Math.random() * (width - block.length) ),
-        topRow     = (blocks.length - width);
-
-        for (var z = 0; z < block[0].length; z++){
-            if ( block[z] !== 0 ){
-                blocks[topRow + startpoint].occupied = userId;
-                for ( var o = 0; o < blocks.length; o++ ){
-                   if (blocks[o].occupied === userId){
-                        blocks[i].active = 0;
-                        blocks[i].type   = 0;
-                   } 
-                }
-                blocks[topRow + startpoint].active = 1;
-                blocks[topRow + startpoint].type = type;
-            }
-        }
-            
+function SendCoords(){
+    everyone.now.sendCoords(blockmap);
 }
 
-// 
-function rotateBlockLeft(userId){
-        var type       = 0,
-            startpoint = 0;
+/*
+// Rotate one block 90 degrees to the left
+everyone.now.rotateleft = function(userID){
+    blockLeft(userID);
+    SendCoords();
+}
 
-        for( var z = 0; z < blocks.length; z++ ){
-            if ( blocks[z].userId === userId ){
+
+// Rotate one block 90 degrees to the right
+everyone.now.rotateright = function(userID){
+    blockLeft(userID);
+    SendCoords();
+}
+*/
+
+
+
+function blockLeft( userId ){
+    for( var i = 0; i < height; i++ ){
+        for ( var k = 0; k < width; k++ ){
+            if ( blockmap[i][k] === userId ){
                 
+                // Check there is no collision 
+                if (blockmap[i][k-1] > 0){
+                    // Move down
+                    blockmap[i][k-1] = userId;
+                    // Delete old block
+                    delete blockmap[i][k];
+                }
+
             }
-        }
-
-        for( var z = 0; z < blocks.length; z++ ){
-            if ( blocks[z].type !== 0 ){
-                type = blocks[z].type;
-                startpoint = z;
-                break;
-            }
-        }
-
-        var w = blocks[type][0].length,
-            h = blocks[type].length;
-
-        var rotated = new Array(w);
-        for(var i=0; i < h; i++) {
-            for(var j=0; j < w; j++) {
-                if (!rotated[w-1-j]) rotated[w-1-j] = []
-                rotated[w-1-j][i] = this.blocks[i][j];
-            }
-        }
-        
-}
-
-// Check to see if a line has been filled.
-function checkLineFilled(userId){
-   var fill     = 0,
-       occupied = 0;
-
-   // For every row
-   for( y = 0; y <= height; y++ ){
-       fill = 0;
-       occupied = 0;
-
-       // For every width 
-       for( x = 0; x <= width; x++ ){
-
-           // For each item in our Well map
-           for( z = 0; z < well.length; z++ ){
-
-               // If the block is occupied, then increment the occupied number
-               if (well[z].x === x && well[z].y === y && well[z].occupied === 1){
-                    occupied++;
-               }
-           }
-       }
-
-       if (occupied === width){
-            fill++;
-       }
-
-       well = removeRow(y);
-   }
-
-
-   addPoints(userId,fill);
-   insertNewBlock(userId);
-
-}
-
-function removeRow(height){
-    for( var z = 0; z < well.length; z++ ){
-        if( well[z].y === height ){
-            delete well[z];
-        } else if( well[z].y > height ){
-            well[z].y = (well[z].y - 1);
         }
     }
 }
 
-function addPoints(userId, fill){
-    return user[userId].points = fill * 20;
-}
-
-
-// Check if the bricks have hit the top
-// of the well - game over.
-function checkWellFilled(){
-   var occupied = 0;
-   for( var z = 0; z <= well.length; z++ ){
-        if( well[z].occupied === 1 ){
-            occupied++;
+function blockRight( userId ){
+    for( var i = 0; i < height; i++ ){
+        for ( var k = width; k > 0; k = (k-1) ){
+            if ( blockmap[i][k] === userId ){
+                
+                // Check there is no collision 
+                if (blockmap[i][k+1] > 0){
+                    // Move down
+                    blockmap[i][k+1] = userId;
+                    // Delete old block
+                    delete blockmap[i][k];
+                }
+            }
         }
-   }
-
-   if (occupied === well.length){
-       return true;
-   } else {
-       return false;
-   }
+    }
 }
 
+function blockDown( userId ){
+    for( var i = 0; i < height; i++ ){
+        for ( var k = 0; k < width; k++ ){
+            if ( blockmap[i][k] === userId ){
+                
+                // Check there is no collision 
+                if (blockmap[i-1][k] > 0){
+                    // Move down
+                    blockmap[i-1][k] = userId;
+                    // Delete old block
+                    delete blockmap[i][k];
+                }
+            }
+        }
+    }
+}
 
+function blockAdd( userId ){
+    var startpoint = (Math.floor( Math.round() * width ));
+    blockmap[height][startpoint] = userId;
+}
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
