@@ -227,7 +227,7 @@ function blockDown( userId ){
             }
         }
     }
-
+    inspect(blockmap);
 }
 
 function blockAdd( userId ){
