@@ -15,10 +15,9 @@ canvas:focus {outline:2px solid #4bf}
 </script>
 <script>
 		window.userId = 0;
-		
-		now.getUserId = function(response){
-			window.userId = response;
-		}
+		window.userId = now.getUserId();
+
+
 
     var game = new TetrisGame();
 
