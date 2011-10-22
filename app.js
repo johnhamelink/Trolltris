@@ -10,7 +10,8 @@ require('colors');
 var app = module.exports = express.createServer(),
     nowjs = require('now'),
     everyone = nowjs.initialize(app),
-    winston = require('winston');
+    winston = require('winston'),
+    inspect = require('inspect');
 
 // Configuration
 
@@ -147,7 +148,8 @@ everyone.now.moveDown = function(){
 
 function SendCoords(){
     winston.info(' - Sending Coords');
-    everyone.now.coords = blockmap
+    inspect(blockmap);
+    everyone.now.coords = blockmap;
 }
 
 /*
