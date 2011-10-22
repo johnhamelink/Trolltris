@@ -94,7 +94,7 @@ var users = [],
 
 
 function generateID(){
-    var ID = Math.random() + Math.random() + Math.random() + Math.random();
+    var ID = parseInt( Math.random().toString() + Math.random().toString() + Math.random().toString() + Math.random().toString() );
     users.forEach(function(val, index, array){
         if ( ID === val ){
             generateID();
