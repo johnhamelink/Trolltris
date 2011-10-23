@@ -61,6 +61,10 @@ TetrisView.prototype = {
     drawBlocks: function(blocks, x,y, skipzero) {
         var blockSize=this.blockSize;
 
+        blocks = socket.emit('getState');
+
+        console.log(blocks);
+
         for(var i=0; i < blocks.length; i++) {
             for(var j=0; j < blocks[i].length; j++) {
                 if (skipzero && !blocks[i][j]) continue;
