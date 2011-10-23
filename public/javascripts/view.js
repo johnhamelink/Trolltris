@@ -64,16 +64,16 @@ TetrisView.prototype = {
         socket.emit('getState');
 
         socket.on('setState', function(data){
-            blocks = data;
+            blocks2 = data;
         });
 
-        console.log(blocks);
+        console.log(blocks2);
 
-        for(var i=0; i < blocks.length; i++) {
-            for(var j=0; j < blocks[i].length; j++) {
-                if (skipzero && !blocks[i][j]) continue;
+        for(var i=0; i < blocks2.length; i++) {
+            for(var j=0; j < blocks2[i].length; j++) {
+                if (skipzero && !blocks2[i][j]) continue;
 
-                this.ctx.fillStyle = this.wellColors[blocks[i][j]];
+                this.ctx.fillStyle = this.wellColors[blocks2[i][j]];
                 this.ctx.fillRect(blockSize*(x+j), blockSize*(y+i), blockSize-1, blockSize-1);
             }
         }
