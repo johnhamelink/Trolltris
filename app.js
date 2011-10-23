@@ -48,20 +48,26 @@ console.log("Express server listening on port %d in %s mode", app.address().port
 //
 
 
-var well  = require('./libs/well.js'); //.newWell(10,20);
-console.log(well);
+var well  = require('well');
+var block = require('block');
 
-var block = require('./libs/block.js');
-console.log(block);
+well.newState();
 
 io.sockets.on('connection', function (socket) {
     // Create new block for user 
-    block.add();
+    //block.add();
     
+    socket.on('getState', function(){
+        socket.emit('setState', well.gameState);
+    });
+    setTimeout(function(){
+        socket.emit('setState' );
+    },500);
+
     // Add a new block attached to user
 
-    socket.on('blockLeft',   block.left()  );
-    socket.on('blockright',  block.right() );
-    socket.on('blockdown',   block.down()  );
-    socket.on('blockrotate', block.rotate());
+    /*socket.on('blockLeft',   block.left()     );
+    socket.on('blockright',  block.right()    );
+    socket.on('blockdown',   block.down()     );
+    socket.on('blockrotate', block.rotate()   );*/
 });

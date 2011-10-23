@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<script src="/socket.io/socket.io.js"></script>
 <script src="/public/javascripts/es5.js"></script>
 <script src="/public/javascripts/tetromino.js"></script>
 <script src="/public/javascripts/tetris.js"></script>
@@ -15,6 +16,10 @@ canvas:focus {outline:2px solid #4bf}
 
 </script>
 <script>
+		var socket = io.connect('http://localhost');
+		socket.on('setState',function(grid){
+			console.log(grid);
+		});
     var game = new TetrisGame();
 
     var canvases = document.getElementsByTagName('canvas');
