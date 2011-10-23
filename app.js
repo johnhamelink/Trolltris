@@ -56,7 +56,7 @@ well.newState();
 
 io.sockets.on('connection', function (socket) {
     // Create new user with block
-    user.newUser(this.id, block.get(), { x: 0, y:0 } );
+    user.newUser(this.id, block.get(), { x: 0, y:0 }, null );
     
     socket.on('getState', function(){
         socket.emit('setState', well.gameState);
