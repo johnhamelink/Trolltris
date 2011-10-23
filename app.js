@@ -56,7 +56,7 @@ console.log(block);
 
 io.sockets.on('connection', function (socket) {
     // Create new block for user 
-    
+    block.add();
     
     // Add a new block attached to user
 
