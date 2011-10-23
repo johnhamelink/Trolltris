@@ -61,7 +61,7 @@ TetrisView.prototype = {
     drawBlocks: function(blocks, x,y, skipzero) {
         var blockSize=this.blockSize;
 
-        blocks = socket.emit('getState');
+        var socket.emit('getState');
 
         socket.on('setState', function(data){
             console.log(data);
