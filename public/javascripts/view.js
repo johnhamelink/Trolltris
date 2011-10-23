@@ -63,6 +63,10 @@ TetrisView.prototype = {
 
         blocks = socket.emit('getState');
 
+        socket.on('setState', function(data){
+            console.log(data);
+        });
+
         console.log(blocks);
 
         for(var i=0; i < blocks.length; i++) {
