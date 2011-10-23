@@ -55,13 +55,13 @@ var well  = require('well'),
 well.newState();
 
 io.sockets.on('connection', function (socket) {
-    // Create new block for user 
-    user.newState(this.id);
-    block.add();
+    // Create new user with block
+    user.newUser(this.id, block.get(), { x: 0, y:0 } );
     
     socket.on('getState', function(){
         socket.emit('setState', well.gameState);
     });
+
     setTimeout(function(){
         socket.emit('setState' );
     },500);
