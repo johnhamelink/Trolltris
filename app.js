@@ -48,14 +48,16 @@ console.log("Express server listening on port %d in %s mode", app.address().port
 //
 
 
-var well  = require('well');
-var block = require('block');
+var well  = require('well'),
+    block = require('block'),
+    user  = require('user');
 
 well.newState();
 
 io.sockets.on('connection', function (socket) {
     // Create new block for user 
-    //block.add();
+    user.newState(this.id);
+    block.add();
     
     socket.on('getState', function(){
         socket.emit('setState', well.gameState);
